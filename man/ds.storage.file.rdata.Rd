@@ -4,8 +4,11 @@
 \alias{ds.storage.file.rdata}
 \title{Rdata file Storage model}
 \usage{
-ds.storage.file.rdata(location = ds.default.location(),
-  extension = "Rdata", custom.folder = FALSE)
+ds.storage.file.rdata(
+  location = ds.default.location(),
+  extension = "Rdata",
+  custom.folder = FALSE
+)
 }
 \arguments{
 \item{location}{storage location, \strong{defaults to ds.default.location folder}}

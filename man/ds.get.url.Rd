@@ -4,9 +4,12 @@
 \alias{ds.get.url}
 \title{Load data from URL}
 \usage{
-ds.get.url(url, h = curl::new_handle(),
+ds.get.url(
+  url,
+  h = curl::new_handle(),
   useragent = "Mozilla/5.0 (Windows NT 6.1; Win64; rv:62.0) Gecko/20100101 Firefox/62.0",
-  referer = NULL)
+  referer = NULL
+)
 }
 \arguments{
 \item{url}{url}

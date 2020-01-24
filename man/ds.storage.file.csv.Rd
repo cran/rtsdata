@@ -4,9 +4,12 @@
 \alias{ds.storage.file.csv}
 \title{CSV file Storage model}
 \usage{
-ds.storage.file.csv(location = ds.default.location(),
-  extension = "csv", date.format = "\%Y-\%m-\%d",
-  custom.folder = FALSE)
+ds.storage.file.csv(
+  location = ds.default.location(),
+  extension = "csv",
+  date.format = "\%Y-\%m-\%d",
+  custom.folder = FALSE
+)
 }
 \arguments{
 \item{location}{storage location, \strong{defaults to ds.default.location folder}}

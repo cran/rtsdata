@@ -4,8 +4,7 @@
 \alias{ds.storage.file.csv.load}
 \title{Load data from CSV file into `xts` object}
 \usage{
-ds.storage.file.csv.load(file, date.col = NULL,
-  date.format = "\%Y-\%m-\%d")
+ds.storage.file.csv.load(file, date.col = NULL, date.format = "\%Y-\%m-\%d")
 }
 \arguments{
 \item{file}{CSV file}

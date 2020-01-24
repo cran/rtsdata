@@ -44,6 +44,7 @@
 #'
 #' @param calendar RQuantLib's holiday calendar, for example: calendar = 'UnitedStates/NYSE', \strong{defaults to NULL}
 #' @param check.update flag to check for updates, \strong{defaults to NULL}
+#' @param full.update flag to force full update, \strong{defaults to NULL}
 #'
 #' @return xts object with data
 #'
@@ -94,7 +95,8 @@ getSymbols = function
 	
 	# additional parameters
 	calendar = NULL,
-	check.update = NULL	
+	check.update = NULL,
+	full.update = NULL
 ) {
 	Symbols = spl(Symbols)
 	#from = to.date(from)
@@ -105,7 +107,7 @@ getSymbols = function
 	data.source = data.sources()[[src]]
 	if(is.null(data.source)) stop('Data source:', src, ' is not found. Following are registered data sources:', names(data.sources()))
 	
-	data = ds.getSymbols(Symbols, from, to, env, calendar, check.update, data.source, verbose)
+	data = ds.getSymbols(Symbols, from, to, env, calendar, check.update, full.update, data.source, verbose)
 	
 	if (!auto.assign) return(data)
 	
@@ -124,17 +126,24 @@ ds.getSymbols = function
 	
 	calendar,
 	check.update,
+	full.update,
 	ds,
 	verbose	
 ) {
 	# setup
 	fn.download = ds$data	
-	check.update = ifnull(check.update, ds$functionality$check.update)	
+	check.update = ifnull(check.update, ds$functionality$check.update)
+	force.full.update = ifnull(full.update, FALSE)
 	fn.update.required = ds$functionality$update.required
 	ds = ds$storage	
 	
 	# no updates if download function is not provided
-	if(is.null(fn.download)) check.update = FALSE	
+	if(is.null(fn.download)) check.update = FALSE
+
+	# check internet
+	if(check.update)
+		if(!curl::has_internet())
+			stop('No internet connection.')	 
 	
 	# date range
 	date.range = paste0(from, '::', to)
@@ -147,7 +156,7 @@ ds.getSymbols = function
 	
 		full.update.required = check.update
 			
-		if(ds$exists(ticker, ds)) {
+		if(!force.full.update && ds$exists(ticker, ds)) {
 			# ds.data / xtsAttributes(ds.data)$stamp - time stamp of last update
 			ds.data = ds$load(ticker, ds)
 						
@@ -158,7 +167,7 @@ ds.getSymbols = function
 					full.update.required = FALSE
 				} else if(!ds.getSymbols.empty(ds.data)) {
 					ds.stamp = indexts(mlast(ds.data))
-					if(verbose) cat('***Incremental Update', '\n\n')
+					if(verbose) cat('***Incremental Update for', ticker.raw, '\n\n')
 					temp = ds.getSymbol.load(fn.download, ticker.raw, ds.stamp, to)
 					
 					if(is.null(temp)) {
@@ -186,8 +195,8 @@ ds.getSymbols = function
 		# 1. file does not exists or
 		# 2. last stored record is different from first update record or
 		# 3. save data is null and update is required
-		if(full.update.required) {
-			if(verbose) cat('***Full Update', '\n\n')
+		if(force.full.update || full.update.required) {
+			if(verbose) cat('***Full Update for', ticker.raw, '\n\n')
 			temp = ds.getSymbol.load(fn.download, ticker.raw, from, to)
 			
 			if(is.null(temp)) {

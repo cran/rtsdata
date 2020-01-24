@@ -19,8 +19,7 @@ ds.getSymbol.av(Symbol, from = "1900-01-01", to = Sys.Date())
 
 ds.getSymbol.tiingo(Symbol, from = "1900-01-01", to = Sys.Date())
 
-ds.getSymbol.fake.stock.data(Symbol, from = "1900-01-01",
-  to = Sys.Date())
+ds.getSymbol.fake.stock.data(Symbol, from = "1900-01-01", to = Sys.Date())
 }
 \arguments{
 \item{Symbol}{symbol}

@@ -4,11 +4,21 @@
 \alias{getSymbols}
 \title{Download historical data}
 \usage{
-getSymbols(Symbols = NULL, env = parent.frame(),
-  reload.Symbols = FALSE, verbose = FALSE, warnings = TRUE,
-  src = "yahoo", symbol.lookup = TRUE, auto.assign = TRUE,
-  from = "1990-01-01", to = Sys.time(), calendar = NULL,
-  check.update = NULL)
+getSymbols(
+  Symbols = NULL,
+  env = parent.frame(),
+  reload.Symbols = FALSE,
+  verbose = FALSE,
+  warnings = TRUE,
+  src = "yahoo",
+  symbol.lookup = TRUE,
+  auto.assign = TRUE,
+  from = "1990-01-01",
+  to = Sys.time(),
+  calendar = NULL,
+  check.update = NULL,
+  full.update = NULL
+)
 }
 \arguments{
 \item{Symbols}{list symbols to download historical data}
@@ -34,6 +44,8 @@ getSymbols(Symbols = NULL, env = parent.frame(),
 \item{calendar}{RQuantLib's holiday calendar, for example: calendar = 'UnitedStates/NYSE', \strong{defaults to NULL}}
 
 \item{check.update}{flag to check for updates, \strong{defaults to NULL}}
+
+\item{full.update}{flag to force full update, \strong{defaults to NULL}}
 }
 \value{
 xts object with data

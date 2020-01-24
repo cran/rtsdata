@@ -62,7 +62,7 @@ indexts = function(x) {
 	temp = xts::.index(x)
 	class(temp) = c('POSIXct', 'POSIXt')
   
-	type = xts::indexClass(x)[1]
+	type = xts::tclass(x)[1]
 	if( type == 'Date' || type == 'yearmon' || type == 'yearqtr')
 		temp = as.Date(temp)
 	temp

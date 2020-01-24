@@ -3,7 +3,6 @@
 \docType{package}
 \name{rtsdata}
 \alias{rtsdata}
-\alias{rtsdata-package}
 \title{`rtsdata` - Efficient Data Storage system for R Time Series.}
 \description{
 The `rtsdata` package simplifies the management of Time Series in R. This package 

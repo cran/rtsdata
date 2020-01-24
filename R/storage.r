@@ -95,8 +95,20 @@ ds.storage.file.rdata = function
 	custom.folder = FALSE
 )
 	list(
-		load = function(t, s) { ds.data = NULL; load(s$ticker(t,s)); ds.data },
-		save = function(ds.data, t, s) save(ds.data, file=s$ticker(t,s)),
+		load = function(t, s) { 
+			ds.data = NULL; 
+			# original - load(s$ticker(t,s)); return(ds.data);
+			filename = s$ticker(t,s)
+			tryCatch({
+				temp = readBin(filename, raw(), file.info(filename)$size)
+				unserialize(brotli::brotli_decompress( temp ))
+			}, error=function(e) {load(filename); ds.data})
+		},
+		save = function(ds.data, t, s) {
+			# original - save(ds.data, file=s$ticker(t,s)); return();			
+			filename = s$ticker(t,s)
+			writeBin(brotli::brotli_compress(serialize(ds.data, NULL), 2), filename);
+		},
 		exists = function(t, s) ds.storage.file.exists(t,s),
 		ticker = function(t, s) ds.storage.file.ticker(t,s),
 		
@@ -291,12 +303,17 @@ ds.storage.database = function
 	# MongoDB storage definition
 	list(
 		fs = fs,
-		load = function(t, s) unserialize(s$fs$read(s$ticker(t,s))$data),
+		load = function(t, s) {
+			# original - unserialize(s$fs$read(s$ticker(t,s))$data),
+			temp = s$fs$read(s$ticker(t,s))$data
+			tryCatch(unserialize(brotli::brotli_decompress(temp)), error=function(e) unserialize(temp))
+		},
 		save = function(ds.data, t, s) {
 			i = s$ticker(t,s)	
 			# the only way to update data is to remove the old file
 			try(s$fs$remove(i), silent = TRUE)
-			s$fs$write(serialize(ds.data, NULL), i)
+			# original - s$fs$write(serialize(ds.data, NULL), i)
+			s$fs$write(brotli::brotli_compress(serialize(ds.data, NULL), 2), i)
 		},
 		exists = function(t, s) sum(s$fs$find()$name == s$ticker(t,s)) > 0,
 		ticker = function(t, s) paste0(s$location, '|', t),

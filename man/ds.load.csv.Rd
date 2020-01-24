@@ -19,7 +19,7 @@ Read csv
 \examples{
  # generate csv file
  filename = file.path(tempdir(), 'dummy.csv')
- cat('x1,x2,x3\\n1,2,3\\n', file = filename)
+ cat('x1,x2,x3\n1,2,3\n', file = filename)
  ds.load.csv(filename)
  
 }

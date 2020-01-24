@@ -4,8 +4,10 @@
 \alias{ds.functionality.default}
 \title{Default Functionality}
 \usage{
-ds.functionality.default(check.update = TRUE,
-  update.required.fn = update.required)
+ds.functionality.default(
+  check.update = TRUE,
+  update.required.fn = update.required
+)
 }
 \arguments{
 \item{check.update}{flag to check for updates, \strong{defaults to TRUE}}

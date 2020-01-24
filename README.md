@@ -55,16 +55,19 @@ a functions to load and save data to create new storage plugin.
 Installation:
 ===
 
+The current release is available on [CRAN](https://CRAN.R-project.org/package=rtsdata),
+which you can install via:
+
+```r
+install.packages("rtsdata")
+```
+
 To install the development version run following code:
 
 ```R
 remotes::install_bitbucket("rtsvizteam/rtsdata")
 ```
-
-The [CRAN](https://cran.r-project.org) version coming soon.
-
 	
-
 
 Example : Basic usage
 ===
@@ -96,8 +99,16 @@ Example : Basic usage
 	# for example, add options(RTSDATA_FOLDER='C:/Data') line to the .Rprofile to 
 	# use 'C:/Data' folder.
 	ds.default.location()
-```
+	
+	
+	# the historical data is currently starts in 2018 because we initially set from = '2018-01-01'
+	getSymbols(Symbols, env, src = 'yahoo', verbose=TRUE)
+	print(env$SPY[1])
 
+	# set full.update flag to force full data update
+	getSymbols(Symbols, env, src = 'yahoo', full.update = TRUE, verbose=TRUE)
+	print(env$SPY[1])
+```
 
 
 Example : use CSV storage

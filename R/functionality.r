@@ -64,13 +64,18 @@ update.required = function
 	# Monday is 1
 	if(dayofweek == 1) date.lag = 3
 
+	update = (current - stamp) > date.lag
+	
 	# getHolidayList
-	if(!is.null(calendar))
-		if(requireNamespace('RQuantLib', quietly=TRUE)) {
-			holidays = RQuantLib::getHolidayList(calendar, stamp, current) 	
-			if(!is.null(holidays)) date.lag = date.lag + len(holidays)
-		} else
-			warning('"RQuantLib" package could not be loaded')
+	if(update)
+		if(!is.null(calendar))
+			if(requireNamespace('RQuantLib', quietly=TRUE)) {
+				holidays = RQuantLib::getHolidayList(calendar, stamp, current) 	
+				if(!is.null(holidays)) date.lag = date.lag + len(holidays)
+				update = (current - stamp) > date.lag
+			} else
+				warning('"RQuantLib" package could not be loaded')
 		   	
-	current - stamp > date.lag
+	update
 }	
+

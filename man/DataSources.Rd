@@ -5,9 +5,13 @@
 \alias{data.sources}
 \title{Data Sources}
 \usage{
-register.data.source(src = "yahoo", data = ds.getSymbol.yahoo,
+register.data.source(
+  src = "yahoo",
+  data = ds.getSymbol.yahoo,
   storage = ds.storage.file.rdata(),
-  functionality = ds.functionality.default(), overwrite = TRUE)
+  functionality = ds.functionality.default(),
+  overwrite = TRUE
+)
 
 data.sources()
 }
