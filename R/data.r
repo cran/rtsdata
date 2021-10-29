@@ -100,11 +100,10 @@ ds.getSymbol.FRED = function
 ){
 	from = to.date(from)
 	to = to.date(to)
-	if( requireNamespace('alfred', quietly = TRUE) ) {
-		df = suppressWarnings(alfred::get_fred_series(Symbol, 'Close', observation_start=from, observation_end = to))
-		xts(df[,'Close',drop=FALSE],df$date)
+	if( requireNamespace('quantmod', quietly = TRUE) ) {
+		suppressWarnings(quantmod::getSymbols(Symbol, src='FRED', from=from, to=to, auto.assign=FALSE)[paste0(from,'::',to)])
 	} else
-		warning('"alfred" package could not be loaded')
+		warning('"quantmod" package could not be loaded')
 }
 
 

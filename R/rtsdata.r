@@ -11,7 +11,7 @@
 #' 
 #' The following download plugins are currently available:
 #' * Yahoo Finance - based on `quantmod` package.
-#' * FRED - based on `alfred` package.
+#' * FRED - based on `quantmod` package.
 #' * Quandl - based on `Quandl` package.
 #' 	Quandl recommends getting an API key.
 #' 	Add following code options(Quandl.api_key = api_key)  to your .Rprofile file.

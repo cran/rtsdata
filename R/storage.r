@@ -274,7 +274,7 @@ ds.storage.file.csv.save = function
 #' @examples
 #'  \donttest{ 
 #'   # change the 'yahoo' data source to use MongoDB to store historical data
-#'   register.data.source(src = 'yahoo', storage = ds.storage.database())
+#'   # register.data.source(src = 'yahoo', storage = ds.storage.database())
 #'  }
 #'
 #' @export

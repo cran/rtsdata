@@ -1,3 +1,7 @@
+## rtsdata 0.1.3
+
+* Switched to FRED implementation to the 'quantmod' package.
+
 ## rtsdata 0.1.2
 
 * Added compression using 'brotli' package.

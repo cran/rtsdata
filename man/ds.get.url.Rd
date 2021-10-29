@@ -7,7 +7,7 @@
 ds.get.url(
   url,
   h = curl::new_handle(),
-  useragent = "Mozilla/5.0 (Windows NT 6.1; Win64; rv:62.0) Gecko/20100101 Firefox/62.0",
+  useragent = "Mozilla/5.0 (Windows NT 6.1; Win64; rv:62.0) Gecko/20100101",
   referer = NULL
 )
 }
