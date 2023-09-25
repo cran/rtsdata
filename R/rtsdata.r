@@ -71,4 +71,4 @@
 #' @name rtsdata
 #' @docType package
 #' 
-NULL
+"_PACKAGE"

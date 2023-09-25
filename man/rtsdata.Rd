@@ -3,6 +3,7 @@
 \docType{package}
 \name{rtsdata}
 \alias{rtsdata}
+\alias{rtsdata-package}
 \title{`rtsdata` - Efficient Data Storage system for R Time Series.}
 \description{
 The `rtsdata` package simplifies the management of Time Series in R. This package 
@@ -70,5 +71,22 @@ a functions to load and save data to create new storage plugin.
 	# data is stored in the 'sample_Rdata' folder at the following location
 	ds.default.location()
 
+
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://bitbucket.org/rtsvizteam/rtsdata}
+  \item Report bugs at \url{https://bitbucket.org/rtsvizteam/rtsdata/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Irina Kapler \email{irkapler@gmail.com}
+
+Authors:
+\itemize{
+  \item  RTSVizTeam \email{rtsvizteam@gmail.com} [copyright holder]
+}
 
 }

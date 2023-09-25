@@ -207,7 +207,7 @@ Example : get data from FRED
 Example : use MongoDB storage
 ===
 
-If you do not have MongoDB installed, the good tutorial to start using MongoDB on Windows: [Install, setup and start MongoDB on Windows](https://blog.ajduke.in/2013/04/10/install-setup-and-start-mongodb-on-windows/)
+If you do not have MongoDB installed, the good tutorial to start using MongoDB on Windows: [Install, setup and start MongoDB on Windows](https://yitdeveloper.wordpress.com/2014/06/19/install-setup-and-start-mongodb-on-windows/)
 	
 * Create database folder
 	mkdir c:\mongodb\data
@@ -312,18 +312,3 @@ It is a good idea to secure your database. Sample steps to add authentication to
 	print(env$SPY)	
 ```	
 	
-
-	
-To-do: Consider other storage formats
-===
-
-* [feather](https://blog.rstudio.com/2016/03/29/feather/)
-* [fst](https://github.com/fstpackage/fst)
-
-* Apache Parquet files could be read almost as fast as Feather files but the Parquet files were 30x smaller: 
-	* [Columnar File Performance Check-in for Python and R: Parquet, Feather](https://ursalabs.org/blog/2019-10-columnar-perf/)
-	* [rstudio::conf 2020 Takeaways: Updates to tidyeval, Shiny/Sass, shinymeta, parallel processing in R, and more... - Appsilon Data Science | End­ to­ End Data Science Solutions](https://appsilon.com/rstudioconf-2020-takeaways-updates-to-tidyeval-shiny-sass-shinymeta-parallel-processing-in-r-and-more/)
-
-
-
-
